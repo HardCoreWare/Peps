@@ -40,7 +40,7 @@ var app = new Vue({
       pepRequest(){
 
         axios
-        .get('http://localhost/peps/backend.php?pep='+this.peps.branch)
+        .get(serviceUrl+'/peps/backend.php?pep='+this.peps.branch)
         .then(response => {
           this.peps.list=response.data;
           console.log(this.peps.list);
