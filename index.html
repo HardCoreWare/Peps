@@ -15,13 +15,13 @@
 
     <div id="app" class="container-fluid">
 
-        <div class="row" v-bind:hidden="peps.hideElement">
+        <div class="row" >
             <div class="col-sm-12">  
                 <div class="card shadow mb-4">
                     
                     <div class="card-body">
 
-                        <div class="row">
+                        <div class="row" v-bind:hidden="peps.hideElement">
                             <div class="col-sm-2">
                                 <label for="selectBranch">DATASET:</label>
                             </div>
@@ -34,80 +34,78 @@
                             </div>
                         </div>
 
-                        <table class="table table-bordered">
+                        <div class="row" v-bind:hidden="peps.hideElement">
+                            <div class="col">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>PEP</th>
+                                            <th>DESCRIPCION</th>
+                                            <th>PRESUPUESTO INICIAL</th>
+                                            <th>GASTO REAL</th>
+                                            <th>PEDIDOS</th>
+                                            <th>PRESUPUESTO DISPONIBLE</th>
+                                            <th>DETALLE PEDIDOS</th>
+                                        </tr>
+                                    </thead>
+                                            
+                                    <tbody v-for="row in peps.list">
+                                        <tr>
+                                            <td>{{row.Pep}}</td>
+                                            <td>{{row.Descripcion}}</td>
+                                            <td>{{row.Presupuesto_Inicial}}</td>
+                                            <td>{{row.Gasto_Real}}</td>
+                                            <td>{{row.Gasto_Comprometido}}</td>
+                                            <td>{{row.Presupuesto_Disponible}}</td>
+                                            <td v-if="row.Desglose==='1'"><a  v-bind:id="row.Id" v-on:click="orderRequest(row.Id)"><i class="fas fa-receipt"></i></a></td>
+                                            <td v-else></td>
+                                        </tr>
+                                    </tbody>
+        
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row" v-bind:hidden="pedidos.hideElement">
+                            <div class="col-sm-2">
+                                <label >BUSQUEDA:</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input class="form-control" type="text" v-model="pedidos.orderText" v-bind:hidden="pedidos.hideElement" v-on:keyup="orderRequest(pedidos.id)">
+                            </div>
+                        </div>
+
+                        <a class="close-icon" v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
+
+                        <table class="table table-bordered" v-bind:hidden="pedidos.hideElement">
                             <thead>
-                                <tr>
-                                    <th>PEP</th>
-                                    <th>DESCRIPCION</th>
-                                    <th>PRESUPUESTO INICIAL</th>
-                                    <th>GASTO REAL</th>
-                                    <th>PEDIDOS</th>
-                                    <th>PRESUPUESTO DISPONIBLE</th>
-                                    <th>DETALLE PEDIDOS</th>
-                                </tr>
+                                <th>PEP</th>
+                                <th>PEDIDO</th>
+                                <th>IMPORTE</th>
+                                <th>NOMBRE PROVEEDOR</th>
+                                <th>NUM. PROVEEDOR</th>
+                                <th>DESCRIPCION</th>
                             </thead>
-                                    
-                            <tbody v-for="row in peps.list">
+                            <tbody v-for="row in pedidos.list">
                                 <tr>
                                     <td>{{row.Pep}}</td>
+                                    <td>{{row.Pedido}}</td>
+                                    <td>{{row.Importe}}</td>
+                                    <td>{{row.Nombre_Proveedor}}</td>
+                                    <td>{{row.Num_Proveedor}}</td>
                                     <td>{{row.Descripcion}}</td>
-                                    <td>{{row.Presupuesto_Inicial}}</td>
-                                    <td>{{row.Gasto_Real}}</td>
-                                    <td>{{row.Gasto_Comprometido}}</td>
-                                    <td>{{row.Presupuesto_Disponible}}</td>
-                                    <td v-if="row.Desglose==='1'"><a  v-bind:id="row.Id" v-on:click="orderRequest(row.Id)"><i class="fas fa-receipt"></i></a></td>
-                                    <td v-else></td>
                                 </tr>
                             </tbody>
-
                         </table>
 
                     </div>
-
 
                 </div>
             </div> 
         </div>
 
 
-
-<br>
-
-<div class="row">
-    <div class="col-sm-2">
-        <label v-bind:hidden="pedidos.hideElement">BUSQUEDA:</label>
-    </div>
-    <div class="col-sm-2">
-        <input class="form-control" type="text" v-model="pedidos.orderText" v-bind:hidden="pedidos.hideElement" v-on:keyup="orderRequest(pedidos.id)">
-    </div>
-</div>
-
-<a v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
-
-        <table class="table table-bordered" v-bind:hidden="pedidos.hideElement">
-
-            <thead>
-                <th>PEP</th>
-                <th>PEDIDO</th>
-                <th>IMPORTE</th>
-                <th>NOMBRE PROVEEDOR</th>
-                <th>NUM. PROVEEDOR</th>
-                <th>DESCRIPCION</th>
-            </thead>
-
-            <tbody v-for="row in pedidos.list">
-                <tr>
-                    <td>{{row.Pep}}</td>
-                    <td>{{row.Pedido}}</td>
-                    <td>{{row.Importe}}</td>
-                    <td>{{row.Nombre_Proveedor}}</td>
-                    <td>{{row.Num_Proveedor}}</td>
-                    <td>{{row.Descripcion}}</td>
-                </tr>
-            </tbody>
-
-        </table>
-
+        <br>
 
     </div>
 
