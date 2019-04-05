@@ -20,10 +20,14 @@
 
 }
 
-td,th,h4,label{
+td,th,label{
 
-    color:rgb(37, 65, 70);
+    color:rgb(37, 65, 85);
 
+}
+
+h4{
+    color:rgb(45, 110, 150);
 }
 
 
