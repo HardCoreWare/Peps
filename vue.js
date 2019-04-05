@@ -27,7 +27,10 @@ var app = new Vue({
         this.peps.list=response.data;
         for (let i = 0; i < this.peps.list.length; i++) {
 
-          this.peps.list[0].Presupuesto_Inicial=stdToEng(this.peps.list[0].Presupuesto_Inicial);
+          this.peps.list[i].Presupuesto_Inicial=stdToEng(this.peps.list[i].Presupuesto_Inicial);
+          this.peps.list[i].Gasto_Real=stdToEng(this.peps.list[i].Gasto_Real);
+          this.peps.list[i].Gasto_Comprometido=stdToEng(this.peps.list[i].Gasto_Comprometido);
+          this.peps.list[i].Presupuesto_Disponible=stdToEng(this.peps.list[i].Presupuesto_Disponible);
           
         }
         console.log(this.peps.list);
@@ -48,6 +51,12 @@ var app = new Vue({
         .get(serviceUrl+'/backend.php?pep='+this.peps.branch)
         .then(response => {
           this.peps.list=response.data;
+          for (let i = 0; i < this.peps.list.length; i++) {
+            this.peps.list[i].Presupuesto_Inicial=stdToEng(this.peps.list[i].Presupuesto_Inicial);
+            this.peps.list[i].Gasto_Real=stdToEng(this.peps.list[i].Gasto_Real);
+            this.peps.list[i].Gasto_Comprometido=stdToEng(this.peps.list[i].Gasto_Comprometido);
+            this.peps.list[i].Presupuesto_Disponible=stdToEng(this.peps.list[i].Presupuesto_Disponible);
+          }
           console.log(this.peps.list);
         })
         .catch(error => {
@@ -81,6 +90,13 @@ var app = new Vue({
         .get(serviceUrl+'/backend.php?id='+this.pedidos.id+'&order='+orderSearch)
         .then(response => {
           this.pedidos.list=response.data;
+
+          for (let i = 0; i < this.pedidos.list.length; i++) {
+
+            this.pedidos.list[i].Importe=stdToEng(this.pedidos.list[i].Importe);
+            
+          }
+
           console.log(this.pedidos.list);
         })
         .catch(error => {
@@ -91,7 +107,6 @@ var app = new Vue({
         
 
       },
-
 
       //cerramos orden
       orderClose(){
