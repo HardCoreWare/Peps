@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="config.js"></script>
+    <script src="conversion.js"></script>
+
 </head>
 <body>
 
@@ -54,7 +56,7 @@
                                         <tr>
                                             <td>{{row.Pep}}</td>
                                             <td>{{row.Descripcion}}</td>
-                                            <td>{{row.Presupuesto_Inicial}}</td>
+                                            <td>{{stdToEng(row.Presupuesto_Inicial)}}</td>
                                             <td>{{row.Gasto_Real}}</td>
                                             <td>{{row.Gasto_Comprometido}}</td>
                                             <td>{{row.Presupuesto_Disponible}}</td>
@@ -76,7 +78,7 @@
                             </div>
                             <div class="col-sm-7"></div>
                             <div class="col-sm-1">
-                                <a class="close-icon" v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
+                                <a v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
                             </div>
 
                         </div>

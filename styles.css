@@ -1,7 +1,17 @@
-.close-icon{
+.fa-window-close{
 
-    margin-right:20px;
+    margin-right:0px;
     cursor: pointer;
 
+}
+
+.fa-receipt{
+
+    color:rgb(92, 81, 251);
+
+}
+
+.table{
+    background-color: rgba(0, 255, 242, 0.11);
 }
 
