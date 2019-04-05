@@ -285,6 +285,7 @@ class PdoCrud{
     target  : conditions
     */
     public function delete($table,$target){
+        
         $sql="DELETE FROM ".$table." WHERE ".$target;
             
         try{
