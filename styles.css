@@ -2,18 +2,24 @@
 
     margin-right:0px;
     cursor: pointer;
+    color:red;
+
+}
+
+.close-window{
+
+    margin-top:5px;
+    margin-right:5px;
 
 }
 
 .fa-receipt{
 
     color:rgb(92, 81, 251);
+    cursor: pointer;
 
 }
 
-.table{
 
-    
 
-}
 
