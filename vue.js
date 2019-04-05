@@ -22,7 +22,7 @@ var app = new Vue({
     mounted() {
 
       axios
-      .get('http://localhost/peps/backend.php?pep=all')
+      .get(serviceUrl+'/backend.php?pep=all')
       .then(response => {
         this.peps.list=response.data;
         console.log(this.peps.list);
