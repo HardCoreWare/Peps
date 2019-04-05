@@ -73,6 +73,10 @@
                             <div class="col-sm-2">
                                 <input class="form-control" type="text" v-model="pedidos.orderText" v-bind:hidden="pedidos.hideElement" v-on:keyup="orderRequest(pedidos.id)">
                             </div>
+                            <div class="col-sm-8">
+                                <a class="close-icon" v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
+                            </div>
+
                         </div>
 
                         <a class="close-icon" v-on:click="orderClose" v-bind:hidden="pedidos.hideElement"><i class="fas fa-window-close"></i></a>
