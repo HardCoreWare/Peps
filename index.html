@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PEPs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+</head>
+<body>
+
+    <div id="app">
+
+            <select v-model="peps.branch" v-on:change="pepRequest" v-bind:hidden="peps.hideElement">
+                <option value="all">TODO</option>
+                <option value="pmo">PMO</option>
+                <option value="bi">BASE INSTALADA</option>                
+            </select>
+
+            <table class="table table-bordered" v-bind:hidden="peps.hideElement">
+
+                    <thead>
+                        <tr>
+                            <th>PEP</th>
+                            <th>DESCRIPCION</th>
+                            <th>PRESUPUESTO INICIAL</th>
+                            <th>GASTO REAL</th>
+                            <th>PEDIDOS</th>
+                            <th>PRESUPUESTO DISPONIBLE</th>
+                            <th>DETALLE PEDIDOS</th>
+                        </tr>
+                    </thead>
+        
+                    <tbody v-for="row in peps.list">
+                        <tr>
+                            <td>{{row.Pep}}</td>
+                            <td>{{row.Descripcion}}</td>
+                            <td>{{row.Presupuesto_Inicial}}</td>
+                            <td>{{row.Gasto_Real}}</td>
+                            <td>{{row.Gasto_Comprometido}}</td>
+                            <td>{{row.Presupuesto_Disponible}}</td>
+                            <td v-if="row.Desglose==='1'"><a  v-bind:id="row.Id" v-on:click="orderRequest(row.Id)">ver pedidos</a></td>
+                            <td v-else>NULO</td>
+                        </tr>
+                    </tbody>
+        
+            </table>
+
+<br>
+
+        <label v-bind:hidden="pedidos.hideElement">Descripcion</label>
+        <input type="text" v-model="pedidos.orderText" v-bind:hidden="pedidos.hideElement" v-on:keyup="orderRequest(pedidos.id)">
+        <a v-on:click="orderClose" v-bind:hidden="pedidos.hideElement">X</a>
+
+        <table class="table table-bordered" v-bind:hidden="pedidos.hideElement">
+
+            <thead>
+                <th>PEP</th>
+                <th>PEDIDO</th>
+                <th>IMPORTE</th>
+                <th>NOMBRE PROVEEDOR</th>
+                <th>NUM. PROVEEDOR</th>
+                <th>DESCRIPCION</th>
+            </thead>
+
+            <tbody v-for="row in pedidos.list">
+                <tr>
+                    <td>{{row.Pep}}</td>
+                    <td>{{row.Pedido}}</td>
+                    <td>{{row.Importe}}</td>
+                    <td>{{row.Nombre_Proveedor}}</td>
+                    <td>{{row.Num_Proveedor}}</td>
+                    <td>{{row.Descripcion}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+    <script src="vue.js"></script>
+
+
+
+</body>
+</html>
