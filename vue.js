@@ -25,6 +25,11 @@ var app = new Vue({
       .get(serviceUrl+'/backend.php?pep=all')
       .then(response => {
         this.peps.list=response.data;
+        for (let i = 0; i < this.peps.list.length; i++) {
+
+          this.peps.list[0].Presupuesto_Inicial=stdToEng(this.peps.list[0].Presupuesto_Inicial);
+          
+        }
         console.log(this.peps.list);
       })
       .catch(error => {
@@ -53,13 +58,13 @@ var app = new Vue({
 
       },
 
+
       //peticion de pedidos por ID de pep
       orderRequest(id){
 
         this.pedidos.id=id;
         this.peps.hideElement=true;
         this.pedidos.hideElement=false;
-
         let orderSearch='all';
 
         if(this.pedidos.orderText===''){
@@ -86,6 +91,9 @@ var app = new Vue({
         
 
       },
+
+
+      //cerramos orden
       orderClose(){
         this.peps.hideElement=false;
         this.pedidos.hideElement=true;
