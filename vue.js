@@ -22,7 +22,7 @@ var app = new Vue({
     mounted() {
 
       axios
-      .get('http://localhost/peps/index.php?pep=all')
+      .get('http://localhost/peps/backend.php?pep=all')
       .then(response => {
         this.peps.list=response.data;
         console.log(this.peps.list);
@@ -40,7 +40,7 @@ var app = new Vue({
       pepRequest(){
 
         axios
-        .get('http://localhost/peps/index.php?pep='+this.peps.branch)
+        .get('http://localhost/peps/backend.php?pep='+this.peps.branch)
         .then(response => {
           this.peps.list=response.data;
           console.log(this.peps.list);
