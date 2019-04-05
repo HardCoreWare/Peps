@@ -4,6 +4,8 @@
     require_once 'PdoCrud.php';
     require_once 'Peps.php';
     require_once 'Orders.php';
+    require_once 'Config.php';
+
 
 if(isset($_GET['pep'])){
 
@@ -13,7 +15,7 @@ if(isset($_GET['pep'])){
 
         case 'all':
 
-            $myPeps = new Peps(new PdoCrud('localhost','root','','PEPSTI'));
+            $myPeps = new Peps(new PdoCrud('localhost','root',DB_PASSWORD,'PEPSTI'));
             $peps = $myPeps->index();
             $response = json_encode($peps);
             $myPeps->end();
@@ -23,7 +25,7 @@ if(isset($_GET['pep'])){
 
         case 'pmo':
 
-            $myPeps = new Peps(new PdoCrud('localhost','root','','PEPSTI'));
+            $myPeps = new Peps(new PdoCrud('localhost','root',DB_PASSWORD,'PEPSTI'));
             $peps = $myPeps->branch('PMO');
             $response = json_encode($peps);
             $myPeps->end();
@@ -33,7 +35,7 @@ if(isset($_GET['pep'])){
 
         case 'bi':
 
-            $myPeps = new Peps(new PdoCrud('localhost','root','','PEPSTI'));
+            $myPeps = new Peps(new PdoCrud('localhost','root',DB_PASSWORD,'PEPSTI'));
             $peps = $myPeps->branch('BI');
             $response = json_encode($peps);
             $myPeps->end();
@@ -43,7 +45,7 @@ if(isset($_GET['pep'])){
         
         default:
 
-            $myPeps = new Peps(new PdoCrud('localhost','root','','PEPSTI'));
+            $myPeps = new Peps(new PdoCrud('localhost','root',DB_PASSWORD,'PEPSTI'));
             $peps = $myPeps->index();
             $response = json_encode($peps);
             $myPeps->end();
@@ -56,15 +58,10 @@ if(isset($_GET['pep'])){
 else if(isset($_GET['id'])){
 
     $pepid = $_GET['id'];
-
     $orderDesc=$_GET['order'];
-
-    $myOrders = new Orders(new PdoCrud('localhost','root','','PEPSTI'));
-
+    $myOrders = new Orders(new PdoCrud('localhost','root',DB_PASSWORD,'PEPSTI'));
     $orders = $myOrders->order($pepid,$orderDesc);
-
     $response = json_encode($orders);
-
     echo($response);
 
 }
