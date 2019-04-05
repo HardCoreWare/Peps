@@ -1,5 +1,5 @@
 <?php
 
-define('DB_PASSWORD','Pit2018mtv#@');
+define('DB_PASSWORD','');
 
 ?>
