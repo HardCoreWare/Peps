@@ -40,7 +40,7 @@ var app = new Vue({
       pepRequest(){
 
         axios
-        .get(serviceUrl+'/peps/backend.php?pep='+this.peps.branch)
+        .get(serviceUrl+'/backend.php?pep='+this.peps.branch)
         .then(response => {
           this.peps.list=response.data;
           console.log(this.peps.list);
@@ -73,7 +73,7 @@ var app = new Vue({
         }
 
         axios
-        .get(serviceUrl+'/peps/index.php?id='+this.pedidos.id+'&order='+orderSearch)
+        .get(serviceUrl+'/backend.php?id='+this.pedidos.id+'&order='+orderSearch)
         .then(response => {
           this.pedidos.list=response.data;
           console.log(this.pedidos.list);
