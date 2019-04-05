@@ -73,7 +73,7 @@ var app = new Vue({
         }
 
         axios
-        .get('http://localhost/peps/index.php?id='+this.pedidos.id+'&order='+orderSearch)
+        .get(serviceUrl+'/peps/index.php?id='+this.pedidos.id+'&order='+orderSearch)
         .then(response => {
           this.pedidos.list=response.data;
           console.log(this.pedidos.list);
