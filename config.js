@@ -1,1 +1,1 @@
-const serviceUrl='http://localhost/Peps';
+const serviceUrl='http://34.73.53.135/Peps';
